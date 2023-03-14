@@ -1,4 +1,7 @@
-let nombre = "HolaMundo";
-console.log(nombre);
-let variable1 = prompt();
-console.log(variable1);
+const Keypass = 123;
+let nombre = "Takatus";
+let entrada = prompt("ingresar usuario");
+while (entrada != "Takatus") {
+  alert ("El usuario ingresado no es valido");
+  entrada = prompt ("ingresar usuario");
+};
