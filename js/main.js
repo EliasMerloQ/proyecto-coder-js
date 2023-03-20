@@ -3,9 +3,10 @@ function ticket(name,equip1,equip2,equip3,equip4) {
   alert("Pase a la Tienda de Colombus con el siguiente ticket a reclamar sus objetos gratis para su aventura!")
 }
 function check_clase(caracter){
-  while(caracter !== 1 && caracter !== 1 && caracter !== "3"){
-    caracter = prompt("Caracter ingresado no valido \nIngrese (1), (2) o (3)")
+  while(caracter !== "1" && caracter !== "2" && caracter !== "3"){
+    caracter = prompt("Caracter ingresado no valido Ingrese: \n1) Artificiero\n2) Bárbaro \n3) Bardo")
   }
+  return caracter
 }
 function check_ab(caracter1) {
   while(caracter1 != "a" && caracter1 != "b"){
@@ -19,11 +20,11 @@ function check_abc(caracter2){
 }
 
 let nombre = prompt("Ingrese su nombre");
-alert("Bienvenido " + nombre +"!")
-let clase = prompt("Digame cual es su Clase \n (elija uno de los numeros mostrados a continuacion) \n1) Artificiero \n2) Bárbaro \n3) Bardo")
-check_clase(clase)
+alert("Bienvenido " + nombre +"!");
+let clase = prompt("Digame cual es su Clase \n (elija uno de los numeros mostrados a continuacion) \n1) Artificiero \n2) Bárbaro \n3) Bardo");
+let _class = check_clase(clase);
 
-switch(clase) {
+switch(_class) {
   case "1":
     alert("Seleccione su equipo a continuación \n Elija ingresando a,b,c... \n el numero (n) indica la cantidad de objetos a dar")
     equipo1 = "(2) Armas simples"
