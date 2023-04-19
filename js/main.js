@@ -244,6 +244,10 @@ function show() {
   cartTotalElement.textContent = `${carrito.total/100} po`;
 }
 
+function guardarLS(arr) {
+    localStorage.setItem("itemsCart", JSON.stringify(arr))
+}
+
 const carrito = {
   items: [],
   total: 0
@@ -257,14 +261,16 @@ function showNotification(nombre) {
     notificationElement.style.opacity = '0';
   }, 2000);
 }
-
 function addToCart(nombre, precio) {
+  console.log(carrito)
   carrito.items.push({ nombre, precio: parseFloat(precio) });
+  console.log(carrito)
+  guardarLS(carrito)
+  console.log(localStorage)
   carrito.total += parseFloat(precio);
   console.log(`Se agregó ${nombre} al carrito. Total: ${carrito.total / 100} po`);
   show()
   showNotification(nombre)
-
 }
 
 function showCart() {
@@ -273,6 +279,13 @@ function showCart() {
     console.log(`${item.nombre} - ${item.precio/100} po`);
   }
   console.log(`Total: ${carrito.total/100} po`);
+}
+
+if(carrito != undefined){
+  const carritoNew = localStorage.getItem("itemsCart")
+  const carritoNewLs = JSON.parse(carritoNew)
+  console.log(carritoNewLs)
+  addToCart(carritoNewLs.name , carritoNewLs.cost)
 }
 
 function updateCartCount() {
