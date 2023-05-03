@@ -87,7 +87,6 @@ const armaduraDePlacas = new Armors("Armadura de placas", "CA 18", "Desventaja",
 const cotaGuarnecida = new Armors("Cota guarnecida", "CA 14", "Desventaja", "-", "40 lb.", "30 po", "armadura pesada")
 const cotaDeMalla = new Armors("Cota de malla", "CA 16", "Desventaja", "Fue 13", "55 lb.", "75 po", "armadura pesada");
 
-
 // Array de todas las armas
 const weaponList = [baston, clava, daga, granClava, hachaDeMano, hoz, javalina, lanza, martilloLigero, maza,arcoCorto, ballestaLigera, dardo, honda, alabarda, cimitarra, espadaCorta, espadaLarga, estoque, granHacha, guja, hachaDeBatalla, lanzaDeCaballeria, latigo, luceroDelAlba, mandoble, mangual, martilloDeGuerra, mazoDeGuerra, pica, picoDeGuerra, tridente]
 //Array de todas las armaduras
@@ -126,40 +125,51 @@ function convertValue(value) {
 }
 
 
-function agregarArma(arma){
-  const ListaArmas = document.getElementById("armasLista")
-  ListaArmas.innerHTML +=`
+function agregarArma(weaponArr){
+  let html = ""
+  armasLista.innerHTML = ""
+  armasLista.innerHTML += html
+  for(let i = 0; i < weaponArr.length; i++){
+    const Weapons = weaponArr[i]
+    html +=`
             <div class="row-link-content p-1">
-            <li class="weapon" data-categoria="${arma.range}" data-tipo="${arma.type}">
+            <li class="weapon" data-categoria="${Weapons.range}" data-tipo="${Weapons.type}">
             <div class="row">
             <div class="col-6 col-md-3">
-              <strong class="liColor">${arma.name}</strong>
+              <strong class="liColor">${Weapons.name}</strong>
             </div>
             <div class="col-6 col-md-3">
-              <strong class="liColor">${arma.damage}</strong>
+              <strong class="liColor">${Weapons.damage}</strong>
             </div>
             <div class="col-3 col-md-3">
-              <strong class="liColor">${arma.properties}</strong>
+              <strong class="liColor">${Weapons.properties}</strong>
             </div>
             <div class="col-1 col-md-1">
-              <strong class="liColor">${arma.weight}</strong>
+              <strong class="liColor">${Weapons.weight}</strong>
             </div>
             <div class="col-1 col-md-1">
-              <strong class="liColor">${arma.cost}</strong>
+              <strong class="liColor">${Weapons.cost}</strong>
             </div>
             <div class="col-1 col-md-1">
-            <button class="btn btn-warning" onclick="addToCart('${arma.name}', '${convertValue(arma.cost)}')">
+            <button class="btn btn-warning" onclick="addToCart('${Weapons.name}', '${convertValue(Weapons.cost)}')">
             <i class="fas fa-plus">+</i>
           </button>
             </div>
           </div>
             </div>
             <hr style = "color: #fff"> 
-            </div>` 
+            </div>`
+  }
+  armasLista.innerHTML += html
 }
-for (let i = 0; i < weaponList.length; i++) {
-  agregarArma(weaponList[i]);
-}
+agregarArma(weaponList)
+
+const miBoton = document.getElementById('miBoton')
+miBoton.addEventListener("click", () => {
+  agregarArma(weaponsListSimple)
+  alert("hiciste click")
+});
+
 function agregarArmadura(armadura){
   const ListaArmaduras = document.getElementById("armadurasLista")
   ListaArmaduras.innerHTML +=`
@@ -197,164 +207,23 @@ function agregarArmadura(armadura){
 for (let i = 0; i < armorList.length; i++) {
   agregarArmadura(armorList[i]);
 }
-// Obtener los elementos del HTML
-const cartItemsElement = document.getElementById('cart-items');
-const cartTotalElement = document.getElementById('cart-total')
+//filtro
 
-function show() {
-  // Vaciar la lista de elementos del carrito
-  cartItemsElement.innerHTML = '';
-
-  // Iterar sobre cada elemento del carrito y agregarlo a la lista
-  for (let item of carrito.items) {
-    const li = document.createElement('li');
-    li.classList.add('armor');
-    li.dataset.categoria = item.categoria;
-    li.dataset.tipo = item.tipo;
-
-    const divRow = document.createElement('div');
-    divRow.classList.add('row');
-
-    const divName = document.createElement('div');
-    divName.classList.add('col-4', 'col-md-3');
-
-    const strongName = document.createElement('strong');
-    strongName.classList.add('liColor');
-    strongName.textContent = item.nombre;
-
-    const divPrice = document.createElement('div');
-    divPrice.classList.add('col-4', 'col-md-3');
-
-    const strongPrice = document.createElement('strong');
-    strongPrice.classList.add('liColor');
-    strongPrice.textContent = `${item.precio/100} po`;
-
-    divName.appendChild(strongName);
-    divPrice.appendChild(strongPrice);
-
-    divRow.appendChild(divName);
-    divRow.appendChild(divPrice);
-
-    li.appendChild(divRow);
-
-    cartItemsElement.appendChild(li);
-  }
-
-  // Actualizar el total del carrito
-  cartTotalElement.textContent = `${carrito.total/100} po`;
+//carrito
+function Carrito() {
+  this.productos = [];
+  this.total = 0;
 }
 
-function guardarLS(arr) {
-    localStorage.setItem("itemsCart", JSON.stringify(arr))
+//Cofre 
+function createChest(){
+  const chestOn = document.getElementById("chest")
+  let html = ""
+  chestOn.innerHTML = ""
+  html = `
+      <a href=""><img
+      class="treasureChest" src="../media/treasure.png" alt=""> <span id="cart-count">0</span> </a>`
+  chestOn.innerHTML += html
 }
 
-const carrito = {
-  items: [],
-  total: 0
-};
-
-function showNotification(nombre) {
-  const notificationElement = document.getElementById('notification');
-  notificationElement.textContent = `Item agregado con éxito: ${nombre}`;
-  notificationElement.style.opacity = '1';
-  setTimeout(() => {
-    notificationElement.style.opacity = '0';
-  }, 2000);
-}
-function addToCart(nombre, precio) {
-  console.log(carrito)
-  carrito.items.push({ nombre, precio: parseFloat(precio) });
-  console.log(carrito)
-  guardarLS(carrito)
-  console.log(localStorage)
-  carrito.total += parseFloat(precio);
-  console.log(`Se agregó ${nombre} al carrito. Total: ${carrito.total / 100} po`);
-  show()
-  showNotification(nombre)
-}
-
-function showCart() {
-  console.log("Carrito:");
-  for (let item of carrito.items) {
-    console.log(`${item.nombre} - ${item.precio/100} po`);
-  }
-  console.log(`Total: ${carrito.total/100} po`);
-}
-
-if(carrito != undefined){
-  const carritoNew = localStorage.getItem("itemsCart")
-  const carritoNewLs = JSON.parse(carritoNew)
-  console.log(carritoNewLs)
-  addToCart(carritoNewLs.name , carritoNewLs.cost)
-}
-
-function updateCartCount() {
-  cartCountElement.textContent = parseFloat(cartCountElement.textContent) + 1;
-}
-
-function filterWeapons() {
-  // Obtener los valores de los campos de búsqueda
-  let name = document.getElementById('searchByName').value.toLowerCase();
-  let categoria = document.getElementsByName('categoria')[0].value;
-  let tipo = document.getElementsByName('tipo')[0].value;
-
-  // Obtener la lista de armas
-  let weapons = document.querySelectorAll('.weapon');
-
-  for (let j = 0; j < weapons.length; j++) {
-    weapons[j].style.display = 'none';
-  }
-
-  // Iterar sobre cada arma y mostrarla si coincide con los criterios de búsqueda
-  for (let i = 0; i < weapons.length; i++) {
-    let arma = weapons[i];
-
-    // Obtener los valores del arma
-    let armaName = arma.querySelector('.liColor').textContent.toLowerCase();
-    let armaCategoria = arma.dataset.categoria.toLowerCase();
-    let armaTipo = arma.dataset.tipo.toLowerCase();
-
-    // Mostrar el arma si cumple con los criterios de búsqueda
-    if ((armaName.indexOf(name) !== -1 || name === '') && (armaCategoria === categoria || categoria === 'Todas') && (armaTipo === tipo || tipo === 'Todas')) {
-      arma.style.display = 'block';
-    }
-  }
-}
-
-function clearSearch() {
-  document.getElementById('searchByName').value = '';
-  document.getElementById('selectType').value = 'Todas';
-  document.getElementById('selectCateogory').value = 'Todas';
-  filterWeapons();
-}
-
-//-------//
-
-function filterArmors() {
-  // Obtener los valores de los campos de búsqueda
-  let name = document.getElementById('searchByName2').value.toLowerCase();
-  let categoria = document.getElementsByName('categoria2')[0].value;
-  let tipo = document.getElementsByName('tipo2')[0].value;
-
-  // Obtener la lista de armas
-  let armors = document.querySelectorAll('.armor');
-
-  for (let j = 0; j < armors.length; j++) {
-    armors[j].style.display = 'none';
-  }
-
-  // Iterar sobre cada arma y mostrarla si coincide con los criterios de búsqueda
-  for (let i = 0; i < armors.length; i++) {
-    let armadura = armors[i];
-
-    // Obtener los valores del arma
-    let armaduraName = armadura.querySelector('.liColor').textContent.toLowerCase();
-    let armaduraCategoria = armadura.dataset.categoria;
-    let armaduraTipo = armadura.dataset.tipo.toLowerCase();
-
-    // Mostrar el arma si cumple con los criterios de búsqueda
-    if ((armaduraName.indexOf(name) !== -1 || name === '') && (armaduraCategoria === categoria || categoria === 'Todas') && (armaduraTipo === tipo || tipo === 'Todas')) {
-      armadura.style.display = 'block';
-    }
-  }
-}
+createChest()
