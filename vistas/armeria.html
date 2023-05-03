@@ -46,22 +46,21 @@
           <h4 class="card-title weaponTitle__h4">Armas</h4>
         </div>
         <form novalidate="novalidate" class="form-inline" accept-charset="UTF-8">
-          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="utf8">
           <div class="row ml-0 mr-0">
             <div class="col-sm-4">
               <label for="searchByName" class="sr-only liColor">Buscar:</label>
               <div class="form-group">
-                <input class="form-control" placeholder="Por nombre" type="text" name="q" id="searchByName"
-                  onkeyup="filterWeapons()">
+                <input class="form-control" placeholder="Por nombre" type="text" name="q">
               </div>
             </div>
             <div class="col-sm-4">
               <label for="selectType" class="sr-only liColor">Tipo:</label>
               <div class="form-group">
-                <select class="form-control" name="tipo" onchange="filterWeapons()">
+                <select class="form-control" name="tipo">
                   <option value="Todas">Todas</option>
                   <option value="marcial">Marcial</option>
-                  <option value="simple">Simple</option>
+                  <option id="miBoton" value="simple">Simple</option>
                 </select>
               </div>
             </div>
@@ -83,6 +82,7 @@
       <!--Listado de armas-->
       <div class="armoryContainer card  table-responsive">
         <ul id="armasLista">
+
         </ul>
       </div>
 
@@ -126,29 +126,18 @@
         </form>
         <br>
       </div>
-
       <!--Listado de armaduras-->
       <div class="armoryContainer__2 card">
         <ul id="armadurasLista">
         </ul>
       </div>
       <div class="cart-container" id="cart-container">
-        <div class="armoryContainer__2 card">
-          <div class="card-header">
-            <h4 class="card-title weaponTitle__h4">Carrito</h4>
-          </div>
-          <ul id="cart-items"></ul>
-          <div class="col-1 col-md-1">
-            <strong class="liColor">Total:</strong>
-          </div> <span class="liColor" id="cart-total"></span></p>
-        </div>
       </div>
       <div id="notification"></div>
     </section>
-    <button>
-      <a href="#cart-container" onclick="document.getElementById('cart-items').scrollIntoView({ behavior: 'smooth' });"><img
-      class="treasureChest" src="../media/treasure.png" alt=""> <span id="cart-count">0</span> </a>
-    </button>
+    <div id="chest">
+
+    </div>
   </main>
     <!--Bootsrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
