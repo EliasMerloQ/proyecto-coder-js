@@ -34,8 +34,8 @@
   padding: 1rem 5%;
 }
 .navLogo {
-  height: 3rem;
-  width: 10rem;
+  height: 4rem;
+  width: 4rem;
 }
 .font__color {
   color: #fff;
@@ -76,9 +76,14 @@
   min-height: 110vh;
   position: relative;
 }
+.hero__image{
+  width: 10rem;
+  height: 10rem;
+  flex-direction: column;
+  justify-content: center;
+}
 .hero__container{
-  padding-top: 270px;
-  display: flex;
+  padding-top: 150px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -90,12 +95,17 @@
 .hero__div {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 1%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .hero__container__h1 {
   font-size: 3.5rem;  
   text-align: center;
   color: #f3f3f3e2;
   font-family: dragonFont;
+  align-items: center;
+  
 }
 .hero__container__p {
  font-size: 1.5rem;
@@ -131,6 +141,7 @@
   width: 100%;
   position: absolute;
   background-attachment: fixed;
+  margin-top: 5rem;
 }
 .weaponTitle {
   margin: 6rem 5rem 0 5rem;
@@ -145,6 +156,35 @@
   overflow: auto;
   height: 70vh;
   border-radius: 0%;
+}
+.table-active{
+  color: goldenrod;
+  cursor: pointer;
+}
+.armoryContainer table {
+  max-width: 100%;
+}
+
+.armoryContainer th,
+.armoryContainer td {
+  white-space: nowrap;
+}
+
+.dataTables_filter input,
+.dataTables_length select,
+.dataTables_paginate .pagination>li>a {
+  background-color: transparent;
+  border-color: #ccc;
+}
+
+.dataTables_paginate .disabled a,
+.dataTables_paginate .disabled a:hover {
+  color: goldenrod;
+}
+
+.dataTables_paginate .pagination>li>a,
+.dataTables_paginate .pagination>li>span {
+  color: goldenrod;
 }
 .armoryContainer__2{
   background-color: rgb(0, 0, 0, 0.8);
@@ -196,13 +236,162 @@
   background-color: #666;
   opacity: 0.5;
 }
+/* Modal */
+.carrito-medieval {
+  background-image: url('../media/fondo.jpeg');
+  background-size: cover;
+  color: #fff;
+  padding: 30px;
+  font-family: 'IM Fell English', serif;
+}
+
+.subtotal-pequeno {
+  font-size: 16px;
+}
+
+.item-carrito {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.item-carrito .nombre {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.item-carrito .precio,
+.item-carrito .subtotal {
+  font-size: 18px;
+}
+
+.item-carrito .cantidad {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item-carrito .cantidad button {
+  font-size: 24px;
+  background-color: #8B4513;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-family: 'IM Fell English', serif;
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.item-carrito .cantidad button:hover {
+  background-color: #DAA520;
+  color: #8B4513;
+}
+
+.item-carrito .subtotal {
+  font-size: 24px;
+  text-align: right;
+}
+
+
+
+.eliminar .btn-eliminar {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+}
+
+.eliminar .btn-eliminar:hover {
+  color: #DAA520;
+}
+
+.total-carrito {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.comprar {
+  font-size: 18px;
+  background-color: #8B4513;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-family: 'IM Fell English', serif;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.comprar:hover {
+  background-color: #DAA520;
+  color: #8B4513;
+}
+
+
+#michest .modal-content {
+  background-color: #0f0f0e;
+  font-family: 'IM Fell English', serif;
+}
+
+#michest .modal-header {
+  border-bottom: none;
+}
+
+#michest .modal-title {
+  color: #DAA520;
+}
+
+#michest .close {
+  color: #fff;
+  opacity: 1;
+}
+
+#michest .close:hover {
+  color: #DAA520;
+}
+
+#michest .modal-body {
+  color: #fff;
+}
+
+#michest .btn-secondary {
+  background-color: #DAA520;
+  color: #8B4513;
+  border: none;
+  border-radius: 3px;
+  font-family: 'IM Fell English', serif;
+}
+
+#michest .btn-secondary:hover {
+  background-color: #8B4513;
+  color: #fff;
+}
+
+#michest .btn-primary {
+  background-color: #fff;
+  color: #8B4513;
+  border: none;
+  border-radius: 3px;
+  font-family: 'IM Fell English', serif;
+}
+
+#michest .btn-primary:hover {
+  background-color: #DAA520;
+  color: #8B4513;
+}
+
+.cantidad .btn {
+  font-size: 14px;
+  padding: 4px 8px;
+}
+
+.cantidad .btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
 
 /* ---------- */
-
-/*Inventario magico*/
-.magicHi__container {
-  padding-top: 200px;
-  display: flex;
+/*Inventario Magico*/
+.invetarioMagico__container {
+  padding-top: 250px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -211,9 +400,16 @@
   position: relative;
   z-index: 2;
 }
-
-/* ---------- */
-
+.invetarioMagico__div {
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.invetarioMagico__img{  
+  width: 50rem;
+  height: 20rem;
+}
 /*Login*/
 .indexLogin {
   margin-top: 5rem;
@@ -226,7 +422,7 @@
 }
 .loginForm {
   display: flex;
-  background-image: url(../media/photo-1546484396-fb3fc6f95f98.jpeg);
+  background-image: url(../media/fondo.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   justify-content: center;
@@ -376,45 +572,3 @@
   cursor: pointer;
 }
 
-/* ---------- */
-
-/* Login Card Social Buttons */
-.login-card-social {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  text-align: center;
-  margin-top: 3rem;
-  border-radius: 10px;
-}
-
-.login-card-social>div {
-  opacity: .8;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: calc(1rem * .8);
-}
-
-.login-card-social-btns {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.login-card-social-btns a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, .6);
-  border-radius: 100px;
-  transition: all .5s;
-}
-
-.login-card-social-btns a:hover {
-  background-color: white;
-  transform: scale(1.1);
-}
